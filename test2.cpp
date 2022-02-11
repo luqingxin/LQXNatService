@@ -15,14 +15,17 @@ int main(){
     clientSock = socket(AF_INET,SOCK_STREAM,0);
 
     sockaddr_in serveAddr;
+    serveAddr.sin_family = AF_INET;
     serveAddr.sin_port =htons(27123);
-    serveAddr.sin_addr.s_addr = inet_addr("124.223.84.18");
-    connect(clientSock,(sockaddr *)&serveAddr,sizeof(serveAddr));
+    serveAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    int ir = connect(clientSock,(sockaddr *)&serveAddr,sizeof(serveAddr));
 
-    char * res[105];
+    printf("%d\n",ir);
+    char res[105];
     while(recv(clientSock,res,50,0) > 0){
         printf("%s\n",res);
     }
+    shutdown(clientSock,SHUT_RDWR);
     close(clientSock);
     return 0;
 }
