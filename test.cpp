@@ -32,6 +32,7 @@ int main(){
     sockaddr_in serviceAddr;
     memset(&serviceAddr,0,sizeof(serviceAddr));
     serviceAddr.sin_port = htons(defaltPort);
+    //printf("%d\n",serviceAddr.sin_port);
     serviceAddr.sin_family = AF_INET;
     serviceAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
     bind(serviceSock,(sockaddr*)&serviceAddr,sizeof(serviceAddr));
